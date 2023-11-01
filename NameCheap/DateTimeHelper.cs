@@ -1,13 +1,11 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
-namespace NameCheap
+namespace NameCheap;
+
+internal static class DateTimeHelper
 {
-    internal static class DateTimeHelper
+    internal static DateTime ParseNameCheapDate(this string dateTimeString)
     {
-        internal static DateTime ParseNameCheapDate(this string dateTimeString)
-        {
-            return DateTime.ParseExact(dateTimeString, "d", CultureInfo.InvariantCulture);
-        }
+        return DateTime.ParseExact(dateTimeString, "d", CultureInfo.InvariantCulture);
     }
 }

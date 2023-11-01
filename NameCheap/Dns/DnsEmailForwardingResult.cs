@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace NameCheap
+namespace NameCheap.Dns;
+
+[XmlRoot("DomainDNSGetEmailForwardingResult")]
+public class DnsEmailForwardingResult
 {
-    [XmlRoot("DomainDNSGetEmailForwardingResult")]
-    public class DnsEmailForwardingResult
-    {
-        [XmlElement("Forward")]
-        public List<EmailForwarding> Emails { get; set; }
-    }
+    [XmlElement("Forward")]
+    public List<EmailForwarding> Emails { get; set; }
 }

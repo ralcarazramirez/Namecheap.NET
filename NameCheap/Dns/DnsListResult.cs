@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace NameCheap
+namespace NameCheap.Dns;
+
+[XmlRoot("DomainDNSGetListResult")]
+public class DnsListResult
 {
-    [XmlRoot("DomainDNSGetListResult")]
-    public class DnsListResult
-    {
-        [XmlAttribute("IsUsingOurDNS")]
-        public bool IsUsingOurDns { get; set; }
+    [XmlAttribute("IsUsingOurDNS")]
+    public bool IsUsingOurDns { get; set; }
 
-        [XmlElement("Nameserver")]
-        public List<string> NameServers { get; set; }
-    }
+    [XmlElement("Nameserver")]
+    public List<string> NameServers { get; set; }
 }

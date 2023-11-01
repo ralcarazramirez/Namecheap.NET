@@ -1,12 +1,11 @@
 ﻿using System.Xml.Serialization;
 
-namespace NameCheap
+namespace NameCheap.Dns;
+
+public class EmailForwarding
 {
-    public class EmailForwarding
-    {
-        [XmlAttribute("mailbox")]
-        public string MailBox { get; set; }
-        [XmlText]
-        public string ForwardTo { get; set; }
-    }
+    [XmlAttribute("mailbox")]
+    public string? MailBox { get; set; }
+    [XmlText]
+    public string? ForwardTo { get; set; }
 }

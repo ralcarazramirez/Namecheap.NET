@@ -1,11 +1,10 @@
 ﻿using System.Xml.Serialization;
 
-namespace NameCheap
+namespace NameCheap.Domain;
+
+[XmlRoot("Tlds")]
+public class TldListResult
 {
-    [XmlRoot("Tlds")]
-    public class TldListResult
-    {
-        [XmlElement("Tld")]
-        public Tld[] Tlds { get; set; }
-    }
+    [XmlElement("Tld")]
+    public Tld[] Tlds { get; set; }
 }

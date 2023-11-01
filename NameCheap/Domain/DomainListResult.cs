@@ -1,12 +1,11 @@
 ﻿using System.Xml.Serialization;
 
-namespace NameCheap
+namespace NameCheap.Domain;
+
+[XmlRoot("CommandResponse")]
+public record DomainListResult
 {
-    [XmlRoot("CommandResponse")]
-    public class DomainListResult
-    {
-        [XmlArray("DomainGetListResult")]
-        [XmlArrayItem("Domain", typeof(Domain))]
-        public Domain[] Domains { get; set; }
-    }
+    [XmlArray("DomainGetListResult")]
+    [XmlArrayItem("Domain", typeof(Domain))]
+    public Domain[] Domains { get; set; }
 }
