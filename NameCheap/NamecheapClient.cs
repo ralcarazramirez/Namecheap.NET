@@ -12,7 +12,7 @@ public class NamecheapClient
     private readonly HttpClient _client;
     private List<KeyValuePair<string, string?>> _parameters = new();
 
-    internal NamecheapClient(IOptionsSnapshot<NamecheapOptions> optionsSnapshot, HttpClient client)
+    public NamecheapClient(IOptions<NamecheapOptions> optionsSnapshot, HttpClient client)
     {
         _options = optionsSnapshot.Value ?? throw new ArgumentNullException(nameof(optionsSnapshot));
         _client = client;
@@ -42,7 +42,7 @@ public class NamecheapClient
 
         if (doc.Root!.Attribute("Status")!.Value.Equals("ERROR", StringComparison.OrdinalIgnoreCase))
             throw new ApplicationException(string.Join(",", doc.Root.Element(_ns + "Errors")!.Elements(_ns + "Error").Select(o => o.Value).ToArray()));
-        else
-            return doc;
+        
+        return doc;
     }
 }

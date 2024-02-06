@@ -27,8 +27,10 @@ public class DnsTests : TestBase
         Assert.IsFalse(hostResult.IsUsingOurDns);
 
         Assert.AreEqual(2, hostResult.NameServers.Count);
-        Assert.IsTrue(hostResult.NameServers.Any(s => string.Equals(s, dns1, System.StringComparison.OrdinalIgnoreCase)));
-        Assert.IsTrue(hostResult.NameServers.Any(s => string.Equals(s, dns2, System.StringComparison.OrdinalIgnoreCase)));
+        Assert.IsTrue(
+            hostResult.NameServers.Any(s => string.Equals(s, dns1, System.StringComparison.OrdinalIgnoreCase)));
+        Assert.IsTrue(
+            hostResult.NameServers.Any(s => string.Equals(s, dns2, System.StringComparison.OrdinalIgnoreCase)));
     }
 
     [TestMethod]

@@ -11,8 +11,9 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>NameCheap;domains;API;TLD;domain-registration;DNS</PackageTags>
     <LangVersion>default</LangVersion>
-    <TargetFrameworks>net8.0;net6.0;net7.0</TargetFrameworks>
     <Nullable>enable</Nullable>
+    <TargetFramework>net8.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup>
     <Product>NameCheapDotNet</Product>

@@ -12,7 +12,6 @@ public class EmailForwardingTests : TestBase
     [TestInitialize]
     public void BeforeEachTest()
     {
-        
         // sets all forwards to default value
         _api.Dns.DeleteAllEmailForwarding(_domainName);
     }
@@ -23,14 +22,14 @@ public class EmailForwardingTests : TestBase
         var timeNonce = DateTime.Now.Ticks.ToString();
         string nonceMailBox = $"mb{timeNonce}",
             nonceForward = $"fwd{timeNonce}@example.net";
-        var forwards = new[] { new EmailForwarding { MailBox = nonceMailBox, ForwardTo = nonceForward }};
+        var forwards = new[] { new EmailForwarding { MailBox = nonceMailBox, ForwardTo = nonceForward } };
 
         // Act
         await _api.Dns.SetEmailForwarding(_domainName, forwards);
 
         // Assert
         var allForwards = await _api.Dns.GetEmailForwarding(_domainName);
-        var forwardCounts = allForwards.Emails.Count(e => 
+        var forwardCounts = allForwards.Emails.Count(e =>
             string.Equals(e.MailBox, nonceMailBox, StringComparison.OrdinalIgnoreCase)
             && string.Equals(e.ForwardTo, nonceForward, StringComparison.OrdinalIgnoreCase));
         Assert.AreEqual(1, forwardCounts);
@@ -44,7 +43,8 @@ public class EmailForwardingTests : TestBase
             nonceFwd1 = $"fwd1_{timeNonce}@example.com",
             nonceFwd2 = $"fwd2_{timeNonce}@example.com";
 
-        var forwards = new[] {
+        var forwards = new[]
+        {
             new EmailForwarding { MailBox = nonceMailBox, ForwardTo = nonceFwd1 },
             new EmailForwarding { MailBox = nonceMailBox, ForwardTo = nonceFwd2 },
         };

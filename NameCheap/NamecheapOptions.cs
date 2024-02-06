@@ -27,5 +27,5 @@ public record NamecheapOptions
     }
     
     [Required]
-    public required IPAddress ClientIp { get; set; }
+    public string ClientIp { get; set; }
 }

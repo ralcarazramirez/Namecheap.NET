@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namecheap.Cli", "Namecheap.Cli\Namecheap.Cli.csproj", "{96FEA457-C517-49FE-A0FF-7E6C763CDA16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernNamecheapTests", "ModernNamecheapTests\ModernNamecheapTests.csproj", "{898662CE-5514-40EE-998A-6A0E17B1379D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namecheap.WebApi", "Namecheap.WebApi\Namecheap.WebApi.csproj", "{A2C8E6CF-ACEE-4061-8BF0-B94EBD8A6C84}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NameCheap.vsmdi
@@ -35,6 +39,14 @@ Global
 		{96FEA457-C517-49FE-A0FF-7E6C763CDA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FEA457-C517-49FE-A0FF-7E6C763CDA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FEA457-C517-49FE-A0FF-7E6C763CDA16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898662CE-5514-40EE-998A-6A0E17B1379D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898662CE-5514-40EE-998A-6A0E17B1379D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898662CE-5514-40EE-998A-6A0E17B1379D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898662CE-5514-40EE-998A-6A0E17B1379D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C8E6CF-ACEE-4061-8BF0-B94EBD8A6C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C8E6CF-ACEE-4061-8BF0-B94EBD8A6C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C8E6CF-ACEE-4061-8BF0-B94EBD8A6C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C8E6CF-ACEE-4061-8BF0-B94EBD8A6C84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

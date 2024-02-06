@@ -110,11 +110,10 @@ public class DnsClient : IDnsClient
     /// </exception>
     public async Task<DnsListResult> GetList(string? sld, string? tld)
     {
-        var _query = new NamecheapClient(_params)
+        var doc = await _query
             .AddParameter("SLD", sld)
-            .AddParameter("TLD", tld);
-
-        var doc = await _query.ExecuteAsync("namecheap.domains.dns.getList");
+            .AddParameter("TLD", tld)
+            .ExecuteAsync("namecheap.domains.dns.getList");
         var serializer = new XmlSerializer(typeof(DnsListResult), _ns.NamespaceName);
 
         using var reader = doc.Root?.Element(_ns + "CommandResponse")?.Element(_ns + "DomainDNSGetListResult")?.CreateReader();
@@ -140,12 +139,11 @@ public class DnsClient : IDnsClient
     /// </exception>
     public async Task SetCustom(string? sld, string? tld, params string[] nameservers)
     {
-        var _query = new NamecheapClient(_params)
+        await _query
             .AddParameter("SLD", sld)
             .AddParameter("TLD", tld)
-            .AddParameter("Nameservers", string.Join(",", nameservers));
-
-        await _query.ExecuteAsync("namecheap.domains.dns.setCustom");
+            .AddParameter("Nameservers", string.Join(",", nameservers))
+            .ExecuteAsync("namecheap.domains.dns.setCustom");
     }
 
     /// <summary>
@@ -168,12 +166,10 @@ public class DnsClient : IDnsClient
     /// </exception>
     public async Task SetDefault(string? sld, string? tld)
     {
-        
-        var _query = new NamecheapClient(_params)
+        await _query
             .AddParameter("SLD", sld)
-            .AddParameter("TLD", tld);
-
-        await _query.ExecuteAsync("namecheap.domains.dns.setDefault");
+            .AddParameter("TLD", tld)
+            .ExecuteAsync("namecheap.domains.dns.setDefault");
     }
 
     public async Task SetHosts(string? secondLevelDomain, string? topLevelDomain, HostEntry[] hostEntries, CancellationToken ctx = default)
@@ -192,16 +188,15 @@ public class DnsClient : IDnsClient
                 _query.AddParameter("TTL" + (i + 1), hostEntries[i].Ttl);
         }
 
-        var doc = await _query.ExecuteAsync("namecheap.domains.dns.setHosts");
+        var doc = await _query.ExecuteAsync("namecheap.domains.dns.setHosts", ctx);
     }
 
     public async Task<DnsHostResult> GetHosts(string sld, string tld, CancellationToken ctx = default)
     {
-        var _query = new NamecheapClient(_params)
+        var doc = await _query
             .AddParameter("SLD", sld)
-            .AddParameter("TLD", tld);
-
-        var doc = await _query.ExecuteAsync("namecheap.domains.dns.getHosts");
+            .AddParameter("TLD", tld)
+            .ExecuteAsync("namecheap.domains.dns.getHosts", ctx);
 
         var serializer = new XmlSerializer(typeof(DnsHostResult), _ns.NamespaceName);
 
@@ -221,12 +216,30 @@ public class DnsClient : IDnsClient
     }
 
     public async Task<DnsListResult> GetList(string sld, string tld, CancellationToken ctx = default)
-        => throw new NotImplementedException();
+    {
+        var doc = await _query
+            .AddParameter("SLD", sld)
+            .AddParameter("TLD", tld)
+            .ExecuteAsync("namecheap.domains.dns.getList", ctx);
+        var serializer = new XmlSerializer(typeof(DnsListResult), _ns.NamespaceName);
+
+        using var reader = doc.Root?.Element(_ns + "CommandResponse")?.Element(_ns + "DomainDNSGetListResult")?.CreateReader();
+        if (reader is not null)
+            return (DnsListResult)serializer.Deserialize(reader);
+        throw new ApplicationException();
+    }
 
     public async Task SetCustom(string sld, string tld, string[] nameservers, CancellationToken ctx = default)
-        => throw new NotImplementedException();
+        => await _query
+            .AddParameter("SLD", sld)
+            .AddParameter("TLD", tld)
+            .AddParameter("Nameservers", string.Join(",", nameservers))
+            .ExecuteAsync("namecheap.domains.dns.setCustom", ctx);
 
     public async Task SetDefault(string sld, string tld, CancellationToken ctx = default)
-        => throw new NotImplementedException();
+        => await _query
+            .AddParameter("SLD", sld)
+            .AddParameter("TLD", tld)
+            .ExecuteAsync("namecheap.domains.dns.setDefault", ctx);
 }
 
