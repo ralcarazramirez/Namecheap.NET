@@ -7,6 +7,7 @@
         <InvariantGlobalization>true</InvariantGlobalization>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
       <UserSecretsId>b5e86ce5-915e-49fc-b59b-eb1d69a79428</UserSecretsId>
+      <IsPackable>true</IsPackable>
   </PropertyGroup>
 
     <ItemGroup>
